@@ -176,6 +176,45 @@ footer .card {
   max-width: 700px;
   margin: auto;
 }
+/* Contact Card */
+.contact-card {
+  background: linear-gradient(135deg, rgba(77,163,255,0.15), rgba(192,132,252,0.15));
+  border: 1px solid rgba(255,255,255,0.05);
+  padding: 28px;
+  border-radius: 14px;
+  box-shadow: 0 12px 35px rgba(2,6,23,0.25);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.5s ease;
+}
+
+.contact-card h3 {
+  font-size: 1.8rem;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+.contact-card p {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 6px 0;
+}
+
+.contact-card a {
+  color: var(--link);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.contact-card a:hover {
+  color: #e9d5ff;
+}
+
+/* Hover subtle glow */
+.contact-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(77,163,255,0.25);
+}
 
 /* -----------------------------------------------------------
    SUBTLE MOTION (Fade-in)
@@ -202,3 +241,4 @@ footer .card {
   .card { padding: 22px; }
   .card p, .card li { font-size: 16px; }
 }
+
