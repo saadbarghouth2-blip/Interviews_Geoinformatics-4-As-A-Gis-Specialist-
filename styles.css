@@ -27,9 +27,13 @@
   --accent-strong: #9f5bff;
   --border-soft: rgba(255,255,255,0.06);
   --border-strong: rgba(255,255,255,0.12);
+  --link: #8be9fd;
+  --highlight: #ffb86c;
+  --data: #50fa7b;
 
   /* Motion */
   --transition: 350ms ease;
+  --backdrop-blur: 10px;
 }
 
 /* -----------------------------------------------------------
@@ -37,26 +41,19 @@
 -----------------------------------------------------------*/
 body {
   font-family: Inter, system-ui;
-  background: var(--bg-dark);
+  background: radial-gradient(900px at 50% 0%, rgba(122,0,255,0.18), transparent 60%), var(--bg-dark);
   color: var(--text-main);
   line-height: 1.6;
   overflow-x: hidden;
-
-  /* Gradient glow behind whole site */
-  background: radial-gradient(
-      900px at 50% 0%,
-      rgba(122,0,255,0.18),
-      transparent 60%
-    ),
-    var(--bg-dark);
+  text-align: left;
 }
 
 /* -----------------------------------------------------------
    HEADER 
 -----------------------------------------------------------*/
 header {
-  text-align: center;
-  padding: 70px 20px;
+  text-align: left;
+  padding: 70px 40px;
 }
 
 header h1 {
@@ -71,22 +68,22 @@ header .subtitle {
   margin-top: 8px;
   color: var(--text-soft);
   font-size: 1.2rem;
+  text-align: left;
 }
 
 /* -----------------------------------------------------------
-   PANEL STRUCTURE (Dashboard GIS Style)
+   MAIN PANEL (Dashboard GIS Style)
 -----------------------------------------------------------*/
 main {
   width: 95%;
   margin: 0 auto;
   padding: 30px;
   border-radius: 20px;
-
   background: rgba(255,255,255,0.03);
-  backdrop-filter: blur(10px);
-
+  backdrop-filter: blur(var(--backdrop-blur));
   border: 1px solid var(--border-soft);
   box-shadow: 0 0 40px rgba(0,0,0,0.5);
+  text-align: left;
 }
 
 /* -----------------------------------------------------------
@@ -99,8 +96,8 @@ main {
   border: 1px solid var(--border-soft);
   transition: var(--transition);
   position: relative;
-
   box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  text-align: left;
 }
 
 /* Gradient Border Light */
@@ -111,8 +108,7 @@ main {
   border-radius: inherit;
   padding: 1px;
   background: linear-gradient(135deg, var(--grad-1), var(--grad-2));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, 
-                 linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   opacity: 0.25;
@@ -133,50 +129,41 @@ main {
   margin-bottom: 16px;
 }
 
+/* Paragraphs & Lists */
 .card p, .card li {
   color: var(--text-soft);
   font-size: 18px;
 }
 
-/* Lists */
 .card ul {
   margin-left: 25px;
 }
 
-/* Important text highlight */
+/* Highlight & Data */
 .card strong {
-  color: var(--accent-strong);
+  color: var(--highlight);
   font-weight: 700;
 }
 
-/* -----------------------------------------------------------
-   LINKS
------------------------------------------------------------*/
-.reference-link {
-  color: var(--accent-strong);
+.value {
+  color: var(--data);
+  font-weight: 600;
+}
+
+/* Links */
+.reference-link, .card a {
+  color: var(--link);
   text-decoration: none;
   font-weight: 600;
 }
 
-.reference-link:hover {
+.reference-link:hover, .card a:hover {
   color: #d5b6ff;
 }
 
 /* -----------------------------------------------------------
-   FOOTER
+   CONTACT CARD (Footer)
 -----------------------------------------------------------*/
-footer {
-  margin-top: 60px;
-  padding: 50px 20px;
-  text-align: center;
-  background: transparent;
-}
-
-footer .card {
-  max-width: 700px;
-  margin: auto;
-}
-/* Contact Card */
 .contact-card {
   background: linear-gradient(135deg, rgba(77,163,255,0.15), rgba(192,132,252,0.15));
   border: 1px solid rgba(255,255,255,0.05);
@@ -184,6 +171,7 @@ footer .card {
   border-radius: 14px;
   box-shadow: 0 12px 35px rgba(2,6,23,0.25);
   transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.5s ease;
+  text-align: left;
 }
 
 .contact-card h3 {
@@ -195,7 +183,7 @@ footer .card {
 .contact-card p {
   font-size: 17px;
   line-height: 1.6;
-  color: var(--muted);
+  color: var(--text-soft);
   margin: 6px 0;
 }
 
@@ -210,14 +198,13 @@ footer .card {
   color: #e9d5ff;
 }
 
-/* Hover subtle glow */
 .contact-card:hover {
   transform: translateY(-5px) scale(1.02);
   box-shadow: 0 25px 50px rgba(77,163,255,0.25);
 }
 
 /* -----------------------------------------------------------
-   SUBTLE MOTION (Fade-in)
+   FADE-IN ANIMATION
 -----------------------------------------------------------*/
 .fade-in {
   opacity: 0;
@@ -234,11 +221,10 @@ footer .card {
    RESPONSIVE
 -----------------------------------------------------------*/
 @media (max-width: 900px) {
-  header h1 { font-size: 2.4rem; }
+  header h1 { font-size: 2.8rem; }
 }
 
 @media (max-width: 650px) {
   .card { padding: 22px; }
   .card p, .card li { font-size: 16px; }
 }
-
