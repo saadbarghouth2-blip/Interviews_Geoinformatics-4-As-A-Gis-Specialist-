@@ -1,235 +1,204 @@
-/* =========================
-   THEME VARIABLES (Dark + Light)
-=========================*/
-:root{
-  --bg: #05060a;
-  --panel: #0b0f17;
-  --card: #0d1118;
-  --muted: #9fb0c6;
-  --text: #eaf2fb;
-  --accent1: #7b3fff; /* purple */
-  --accent2: #007bff; /* blue */
-  --glass: rgba(255,255,255,0.04);
+/* -----------------------------------------------------------
+   GLOBAL RESET 
+-----------------------------------------------------------*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Base Colors */
+  --bg-dark: #05060a;
+  --bg-panel: #0b0e14;
+  --bg-card: #0d1118;
+
+  /* Gradient Premium */
+  --grad-1: #6a00ff;
+  --grad-2: #007bff;
+
+  /* Text Colors */
+  --text-main: #e9ecf1;
+  --text-soft: #a7b0c0;
+  --text-strong: #ffffff;
+
+  /* Accents */
+  --accent: #7b3fff;
+  --accent-strong: #9f5bff;
   --border-soft: rgba(255,255,255,0.06);
-  --shadow: 0 10px 30px rgba(2,6,23,0.6);
-  --radius: 14px;
-  --transition: 400ms cubic-bezier(.2,.9,.3,1);
+  --border-strong: rgba(255,255,255,0.12);
+
+  /* Motion */
+  --transition: 350ms ease;
 }
 
-/* LIGHT THEME OVERRIDES */
-body[data-mode='light']{
-  --bg: #f6f8fb;
-  --panel: #ffffff;
-  --card: #ffffff;
-  --muted: #55677a;
-  --text: #0b1220;
-  --accent1: #6b3bff;
-  --accent2: #1e7bff;
-  --glass: rgba(11,14,20,0.02);
-  --border-soft: rgba(11,14,20,0.06);
-  --shadow: 0 8px 20px rgba(11,14,20,0.06);
+/* -----------------------------------------------------------
+   BODY & BACKGROUND
+-----------------------------------------------------------*/
+body {
+  font-family: Inter, system-ui;
+  background: var(--bg-dark);
+  color: var(--text-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+
+  /* Gradient glow behind whole site */
+  background: radial-gradient(
+      900px at 50% 0%,
+      rgba(122,0,255,0.18),
+      transparent 60%
+    ),
+    var(--bg-dark);
 }
 
-/* =========================
-   GLOBAL & RESET
-=========================*/
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-  background: radial-gradient(900px 400px at 10% 5%, rgba(123,63,255,0.09), transparent 20%), var(--bg);
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  transition: background var(--transition), color var(--transition);
-  overflow-x:hidden;
+/* -----------------------------------------------------------
+   HEADER 
+-----------------------------------------------------------*/
+header {
+  text-align: center;
+  padding: 70px 20px;
 }
 
-/* =========================
-   HEADER
-=========================*/
-header{
-  padding:64px 20px;
-  text-align:center;
-}
-header h1{
-  font-size:3rem;
-  background:linear-gradient(90deg,var(--accent1),var(--accent2));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  font-weight:800;
-  letter-spacing:0.2px;
-}
-header .subtitle{color:var(--muted);margin-top:8px;font-size:1.05rem}
-
-/* Toggle Button */
-#toggle-mode{
-  position:fixed;
-  top:18px;
-  right:18px;
-  padding:10px 12px;
-  border-radius:12px;
-  border:1px solid var(--border-soft);
-  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  color:var(--text);
-  cursor:pointer;
-  box-shadow: 0 6px 18px rgba(2,6,23,0.35);
-  transition: all var(--transition);
-  z-index: 50;
+header h1 {
+  font-size: 3.4rem;
+  background: linear-gradient(45deg, var(--grad-1), var(--grad-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
 }
 
-/* =========================
-   MAIN / PANELS (Dashboard feel)
-=========================*/
-main{
-  width:94%;
-  max-width:1200px;
-  margin:-24px auto 56px;
-  padding:28px;
-  border-radius:calc(var(--radius) + 6px);
-  background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.006));
-  border:1px solid var(--border-soft);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(8px);
-  transition: box-shadow var(--transition), border var(--transition), background var(--transition);
+header .subtitle {
+  margin-top: 8px;
+  color: var(--text-soft);
+  font-size: 1.2rem;
 }
 
-/* =========================
-   CARDS
-=========================*/
-.card-area{display:flex;flex-direction:column;gap:22px}
-.card{
-  padding:26px;
-  border-radius:12px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  position:relative;
-  border:1px solid rgba(255,255,255,0.03);
-  overflow:hidden;
-  transition: transform var(--transition), box-shadow var(--transition), border var(--transition);
-  box-shadow: 0 8px 18px rgba(2,6,23,0.45);
+/* -----------------------------------------------------------
+   PANEL STRUCTURE (Dashboard GIS Style)
+-----------------------------------------------------------*/
+main {
+  width: 95%;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 20px;
+
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(10px);
+
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 0 40px rgba(0,0,0,0.5);
 }
 
-/* Gradient stroke (subtle) */
-.card::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  border-radius:inherit;
-  padding:1px;
-  background: linear-gradient(120deg, rgba(123,63,255,0.12), rgba(0,123,255,0.08));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+/* -----------------------------------------------------------
+   CARD DESIGN (Gradient Premium + Dark Minimal)
+-----------------------------------------------------------*/
+.card {
+  padding: 28px;
+  border-radius: 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  transition: var(--transition);
+  position: relative;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* Gradient Border Light */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--grad-1), var(--grad-2));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, 
+                 linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-  opacity:0.18;
+  opacity: 0.25;
 }
 
-/* Hover / focus */
-.card:hover{
+/* Hover depth */
+.card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 50px rgba(2,6,23,0.55);
-  border-color: rgba(255,255,255,0.06);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.6);
 }
 
-/* Headings + text */
-.card h2{
-  font-size:1.95rem;
-  margin-bottom:12px;
-  background: linear-gradient(90deg,var(--accent1),var(--accent2));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-.card p, .card ul, .instructions-list li{
-  color:var(--muted);
-  font-size:16.5px;
-  line-height:1.65;
-}
-.card strong{color:var(--accent1);font-weight:700}
-
-/* instructions list */
-.instructions-list{margin-left:18px;margin-top:12px}
-.instructions-list li{margin-bottom:10px}
-
-/* small cards / footer card */
-.card.small{padding:18px;border-radius:10px}
-
-/* =========================
-   UI ELEMENTS / TABLE (Top regions)
-=========================*/
-.table {
-  width:100%;
-  border-collapse:collapse;
-  margin-top:12px;
-}
-.table thead th{
-  text-align:left;
-  padding:10px 12px;
-  color:var(--muted);
-  font-size:13px;
-  font-weight:600;
-  opacity:0.95;
-}
-.table tbody td{
-  padding:12px;
-  border-top:1px solid rgba(255,255,255,0.02);
-  color:var(--text);
-  font-size:15px;
+/* Titles */
+.card h2 {
+  font-size: 2.1rem;
+  background: linear-gradient(45deg, var(--grad-1), var(--grad-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 16px;
 }
 
-/* Buttons (glowing) */
-.btn {
-  display:inline-block;
-  padding:10px 14px;
-  border-radius:12px;
-  font-weight:700;
-  cursor:pointer;
-  border:1px solid rgba(255,255,255,0.06);
-  background: linear-gradient(90deg, rgba(123,63,255,0.12), rgba(0,123,255,0.09));
-  color:var(--text);
-  transition: transform 220ms ease, box-shadow 220ms ease;
-  box-shadow: 0 6px 18px rgba(0,123,255,0.06);
-}
-.btn:active{transform:translateY(1px)}
-
-/* Links */
-.reference-link{color:var(--accent2);text-decoration:none;font-weight:600}
-.reference-link:hover{text-decoration:underline;opacity:0.95}
-
-/* =========================
-   FADE / CARD ANIMATIONS (subtle)
-=========================*/
-/* initial */
-.fade-in{opacity:0;transform:translateY(22px);transition:opacity 680ms cubic-bezier(.2,.9,.25,1), transform 680ms cubic-bezier(.2,.9,.25,1)}
-.fade-in.visible{opacity:1;transform:none}
-
-/* small bounce for callouts */
-.pulse{
-  animation: pulseGlow 2.6s infinite;
-  will-change:transform,box-shadow;
-}
-@keyframes pulseGlow{
-  0%{transform:translateY(0);box-shadow:0 6px 18px rgba(0,0,0,0.35)}
-  50%{transform:translateY(-4px);box-shadow:0 18px 42px rgba(0,0,0,0.5)}
-  100%{transform:translateY(0);box-shadow:0 6px 18px rgba(0,0,0,0.35)}
+.card p, .card li {
+  color: var(--text-soft);
+  font-size: 18px;
 }
 
-/* =========================
+/* Lists */
+.card ul {
+  margin-left: 25px;
+}
+
+/* Important text highlight */
+.card strong {
+  color: var(--accent-strong);
+  font-weight: 700;
+}
+
+/* -----------------------------------------------------------
+   LINKS
+-----------------------------------------------------------*/
+.reference-link {
+  color: var(--accent-strong);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.reference-link:hover {
+  color: #d5b6ff;
+}
+
+/* -----------------------------------------------------------
+   FOOTER
+-----------------------------------------------------------*/
+footer {
+  margin-top: 60px;
+  padding: 50px 20px;
+  text-align: center;
+  background: transparent;
+}
+
+footer .card {
+  max-width: 700px;
+  margin: auto;
+}
+
+/* -----------------------------------------------------------
+   SUBTLE MOTION (Fade-in)
+-----------------------------------------------------------*/
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 1s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* -----------------------------------------------------------
    RESPONSIVE
-=========================*/
-@media (max-width:900px){
-  header h1{font-size:2.2rem}
-  .card{padding:18px}
-  .table thead th, .table tbody td{font-size:14px}
+-----------------------------------------------------------*/
+@media (max-width: 900px) {
+  header h1 { font-size: 2.4rem; }
 }
 
-@media (max-width:480px){
-  header{padding:32px 14px}
-  main{padding:18px;margin-top:-10px}
-  .card h2{font-size:1.4rem}
+@media (max-width: 650px) {
+  .card { padding: 22px; }
+  .card p, .card li { font-size: 16px; }
 }
-
-/* =========================
-   LOADING (keep existing) & CANVAS overlay safe
-=========================*/
-#loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(2,6,23,0.78), rgba(2,6,23,0.6));z-index:9999}
-#particles-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
